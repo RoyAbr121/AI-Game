@@ -130,7 +130,8 @@ void Bullet::SimulateMotion(double map[MSZ][MSZ], Node maze[MSZ][MSZ])
 
 	while (maze[i][j].GetValue() == SPACE)
 	{
-		map[i][j] += delta;
+		//map[i][j] += delta;
+		map[i][j] += 0.0001;
 		x += 0.001 * dirx;
 		y += 0.001 * diry;
 		i = MSZ * (y + 1) / 2;

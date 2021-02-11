@@ -2,6 +2,7 @@
 #pragma once
 #include "Node.h"
 #include "Player.h"
+
 const double delta = 0.0001;
 
 class Bullet

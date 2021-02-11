@@ -42,6 +42,7 @@ Room GenerateRoom()
 	int w, h, ci, cj;
 	Room* pr = nullptr;
 	bool isOveralaping;
+
 	do
 	{
 		isOveralaping = false;
@@ -368,36 +369,6 @@ void createMap()
 	}
 }
 
-void DrawMap()
-{
-	int i, j;
-	double sz, xx, yy;
-
-	for (i = 0; i < MSZ; i++)
-	{
-		for (j = 0; j < MSZ; j++)
-		{
-			if (maze[i][j].GetValue() == SPACE)
-			{
-				double c;
-				maze[i][j].setSafety(map[i][j]);
-				c = 1 - map[i][j];// 1(white) is very safe, 0(black) is very dangerous
-				glColor3d(c, c, c);
-				// draw rectangle
-				sz = 2.0 / MSZ;
-				xx = (j * sz - 1);
-				yy = i * sz - 1;
-				glBegin(GL_POLYGON);
-				glVertex2d(xx, yy);
-				glVertex2d(xx + sz, yy);
-				glVertex2d(xx + sz, yy + sz);
-				glVertex2d(xx, yy + sz);
-				glEnd();
-			}
-		}
-	}
-}
-
 void GenerateMap()
 {
 	int num_tries = 1000;
@@ -435,14 +406,6 @@ void display()
 	glutSwapBuffers();// show what was drawn in "frame buffer"
 }
 
-void displayMap()
-{
-	glClear(GL_COLOR_BUFFER_BIT); // clean frame buffer
-	DrawMap();
-	glutSwapBuffers();	// show what was drawn in "frame buffer"
-}
-
-// checks if dx,dy is on SPACE in maze
 bool CheckIsSpace(double dx, double dy)
 {
 	int i, j;
@@ -584,19 +547,15 @@ void idle()
 
 	Sleep(50);	//sleep to make the players appear slower
 
-	glutPostRedisplay();		// calls indirectly to display
+	glutPostRedisplay();	// calls indirectly to display
 }
 
 void Menu(int choice)
 {
-	if (choice == 1)		// let the games begin
+	if (choice == 1)	// let the games begin
 	{
 		proceed = true;
 		glutDisplayFunc(display);
-	}
-	if (choice == 2)		// display safety map
-	{
-		glutDisplayFunc(displayMap);
 	}
 }
 
@@ -615,7 +574,6 @@ void main(int argc, char* argv[])
 	// menu
 	glutCreateMenu(Menu);
 	glutAddMenuEntry("Start Game", 1);
-	glutAddMenuEntry("Safety Map", 2);
 
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
