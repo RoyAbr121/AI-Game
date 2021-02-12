@@ -3,4 +3,6 @@ This is a pixel game I wrote as part of my course in Artificial Intelligence. Th
 
 ![me](https://github.com/RoyAbr121/AI-Game/blob/master/AIGame.gif)
 
+NPC decision tree:
+
 ![me](https://github.com/RoyAbr121/AI-Game/blob/master/DecisionTree.jpg)
